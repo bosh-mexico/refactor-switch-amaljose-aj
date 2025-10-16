@@ -1,25 +1,15 @@
-#include <iostream>
 #include "checkout.h"
 #include "handlers.h"
 #include "ServiceLocator.h"
-using namespace std;
+#include <functional>
 
-void checkout(PaymentMode mode, double amount) {
-    switch (mode) {
-        case PaymentMode::PayPal:
-            ServiceLocator::processPayment(handlePayPal, amount);
-            break;
-
-        case PaymentMode::GooglePay:
-            ServiceLocator::processPayment(handleGooglePay, amount);
-            break;
-
-        case PaymentMode::CreditCard:
-            ServiceLocator::processPayment(handleCreditCard, amount);
-            break;
-
-        default:
-            cout << "Invalid payment mode selected!" << endl;
-            break;
+std::string checkout(PaymentType type, double amount) {
+    if (amount <= 0) {
+        return "Invalid amount! Payment not processed.";
     }
+
+    using Handler = std::function<std::string(double)>;
+    auto& locator = ServiceLocator<PaymentType, Handler>::instance();
+    auto handler = locator.getHandler(type, handleInvalid);
+    return handler(amount);
 }
