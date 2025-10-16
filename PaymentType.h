@@ -1,8 +1,7 @@
-#ifndef PAYMENTTYPE_H
-#define PAYMENTTYPE_H
+#ifndef PAYMENT_TYPE_H
+#define PAYMENT_TYPE_H
 
-// Enum for Payment Modes
-enum class PaymentMode {
+enum class PaymentType {
     PayPal,
     GooglePay,
     CreditCard,
