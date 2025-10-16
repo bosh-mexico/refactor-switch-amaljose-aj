@@ -2,7 +2,8 @@
 #define CHECKOUT_H
 
 #include "PaymentType.h"
+#include <string>
 
-void checkout(PaymentMode mode, double amount);
+std::string checkout(PaymentType type, double amount);
 
 #endif
