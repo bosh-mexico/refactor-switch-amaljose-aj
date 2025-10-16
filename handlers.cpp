@@ -1,22 +1,18 @@
-#include <iostream>
-#include <iomanip>
 #include "handlers.h"
-using namespace std;
+#include <string>
 
-void handlePayPal(double amount) {
-    cout << fixed << setprecision(2);
-    cout << "Processing PayPal payment of $" << amount << endl;
-    // Future PayPal integration logic here
+std::string handlePayPal(double amount) {
+    return "Processed PayPal payment of " + std::to_string(amount);
 }
 
-void handleGooglePay(double amount) {
-    cout << fixed << setprecision(2);
-    cout << "Processing GooglePay payment of $" << amount << endl;
-    // Future GooglePay integration logic here
+std::string handleGooglePay(double amount) {
+    return "Processed GooglePay payment of " + std::to_string(amount);
 }
 
-void handleCreditCard(double amount) {
-    cout << fixed << setprecision(2);
-    cout << "Processing Credit Card payment of $" << amount << endl;
-    // Future Credit Card integration logic here
+std::string handleCreditCard(double amount) {
+    return "Processed CreditCard payment of " + std::to_string(amount);
+}
+
+std::string handleInvalid(double amount) {
+    return "Invalid payment method. Amount " + std::to_string(amount) + " not processed.";
 }
